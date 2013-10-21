@@ -156,27 +156,27 @@ window.Andes = function( ctx, props ) {
 	this.canvas = document.createElement('canvas');
 //	this.canvas.style.border = this.stroke + " 1px solid";
 
-//    this.canvas.width = parseInt(this.width+2);// + 'px';
-//    this.canvas.height = parseInt(this.width+2);// + 'px';
+//	this.canvas.width = parseInt(this.width+2);// + 'px';
+//	this.canvas.height = parseInt(this.width+2);// + 'px';
     
-    this.canvas.width = this.width+2;// + 'px';
-    this.canvas.height = this.width+2;// + 'px';
+	this.canvas.width = this.width+2;// + 'px';
+	this.canvas.height = this.width+2;// + 'px';
 
 
 	this.ctx.appendChild(this.canvas);
 
-//        this.canvas.height = parseInt(this.height);// + 'px';
+//      this.canvas.height = parseInt(this.height);// + 'px';
     
-    this.canvas.style.top = this.y + 'px';
-    this.canvas.style.left = this.x + 'px';
-    this.canvas.style.position = "absolute";
+	this.canvas.style.top = this.y + 'px';
+	this.canvas.style.left = this.x + 'px';
+	this.canvas.style.position = "absolute";
 
-    this.canvasCtx = this.canvas.getContext('2d');
+	this.canvasCtx = this.canvas.getContext('2d');
 
 	this.drawc();
 	
 /*
-    this.canvasCtx.beginPath();
+	this.canvasCtx.beginPath();
 	this.canvasCtx.fillStyle="lightgrey";
 	this.canvasCtx.fillRect(0+1,5,this.width-2,this.width-10);
 	this.canvasCtx.fillRect(5,0+1,this.width-10,this.width-2);
@@ -210,10 +210,10 @@ Andes.prototype.drawc = function(){
 	this.canvasCtx.fillStyle="lightgrey";
 	this.canvasCtx.arc(this.width*0.5+1, this.width*0.5+1, this.width*0.25-2, 0, 2*Math.PI);
 /*
-		this.canvasCtx.shadowColor = '#999';
-		this.canvasCtx.shadowBlur = 20;
-		this.canvasCtx.shadowOffsetX = 5;
-		this.canvasCtx.shadowOffsetY = 5;
+	this.canvasCtx.shadowColor = '#999';
+	this.canvasCtx.shadowBlur = 20;
+	this.canvasCtx.shadowOffsetX = 5;
+	this.canvasCtx.shadowOffsetY = 5;
 */
 	this.canvasCtx.fill();
 //	this.canvasCtx.strokeStyle="grey";
@@ -224,33 +224,32 @@ Andes.prototype.drawc = function(){
 Andes.prototype.drawe = function(){
 	this.canvasCtx.clearRect(0, 0, this.width,this.height);
 	
-    // ctx, x, y, w, h
-    // ctx, cx, cy, w, h
-    // ctx, cx - w/2.0, cy - h/2.0, w, h
+//	ctx, x, y, w, h
+//	ctx, cx, cy, w, h
+//	ctx, cx - w/2.0, cy - h/2.0, w, h
     
-    var x = 2;
-    var y = this.width/4;
-    var w = this.width-2;
-    var h = this.width/2;
+	var x = 2;
+	var y = this.width/4;
+	var w = this.width-2;
+	var h = this.width/2;
+
+	var kappa = .5522848,
+		ox = (w / 2) * kappa, // control point offset horizontal
+		oy = (h / 2) * kappa, // control point offset vertical
+		xe = x + w,           // x-end
+		ye = y + h,           // y-end
+		xm = x + w / 2,       // x-middle
+		ym = y + h / 2;       // y-middle
     
-    
-    var kappa = .5522848,
-	    ox = (w / 2) * kappa, // control point offset horizontal
-	    oy = (h / 2) * kappa, // control point offset vertical
-	    xe = x + w,           // x-end
-	    ye = y + h,           // y-end
-	    xm = x + w / 2,       // x-middle
-	    ym = y + h / 2;       // y-middle
-    
-    this.canvasCtx.beginPath();
-    this.canvasCtx.fillStyle="lightgrey";
-    this.canvasCtx.moveTo(x, ym);
-    this.canvasCtx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
-    this.canvasCtx.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
-    this.canvasCtx.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
-    this.canvasCtx.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
-    this.canvasCtx.closePath();
-    this.canvasCtx.fill();
+	this.canvasCtx.beginPath();
+	this.canvasCtx.fillStyle="lightgrey";
+	this.canvasCtx.moveTo(x, ym);
+	this.canvasCtx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+	this.canvasCtx.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+	this.canvasCtx.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+	this.canvasCtx.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+	this.canvasCtx.closePath();
+	this.canvasCtx.fill();
 	
 	
 }
